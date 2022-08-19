@@ -34,7 +34,7 @@ displayName="Forged Fabric API" #mandatory
 authors="LukeGrahamLandry" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-
+ForgedFabric is a reimplementation of the Fabric API on Forge. Same idea as the quilted-fabric-api.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.forgedfabric]] #optional
