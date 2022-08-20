@@ -9,6 +9,7 @@ public class NetworkHandler {
     public static SimpleChannel INSTANCE;
     private static int ID = 0;
 
+    // problematic for this to be called from multiple mods but when i move it into the loaded check in MOD_ID = "forgedfabric"#setup, it breaks
     public static void registerMessages(){
         INSTANCE = NetworkRegistry.newSimpleChannel(new Identifier(FabricOnForgeMod.MOD_ID, "network"), () -> "1.0", s -> true, s -> true);
 

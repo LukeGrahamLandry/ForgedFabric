@@ -19,10 +19,8 @@ public class ForgeClientModEvents {
         KeyBindingHelper.keys.forEach(event::register);
     }
 
-    // make sure this fires after the one in the main mod
-    @SubscribeEvent(priority = EventPriority.LOWEST)
+    @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event){
-        System.out.println("clientevent lib");
         ClientLifecycleEvents.onClientStarted.forEach((action) -> action.onClientStarted(MinecraftClient.getInstance()));
     }
 }

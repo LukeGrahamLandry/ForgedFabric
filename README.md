@@ -28,7 +28,6 @@ ForgedFabric may be added to your project as a dependency. Take care that event 
 - forge registry shenanigans. perhaps terrible solution: mixin to `Registry#register` that redirects to deferred registers based on the mod id of the identifier  
 - `ModelPredicateProviderRegistry#register` is renamed by forge
 - other multiplatform libraries used from common code need to have exactly the same method signatures for everything you use 
-- not sure about loading mixins and event annotations when shadowed. perhaps call `Mixins.addConfiguration("forgedfabric.mixins.json");` from other mod's constructor. should have a `EventsRegistry#register` that makes sure everything is set up
 - would be interesting have something that runs before forge to find jars with fabric.mod.json files and generate mod.toml files, would also need to generate a class with the mod annotation
 
 ## Tips 
@@ -36,8 +35,10 @@ ForgedFabric may be added to your project as a dependency. Take care that event 
 - common code can check if it's running on forge by calling `FabricLoader.getInstance().isModLoaded("forge")`
 - architectury-loom lets you use yarn mappings on forge. if you stay with yarn when porting fabric mods you can merge upstream changes easily
 - you must manually call your ModInitializer and ClientModInitializer from your forge mod
+- forge must load `FabricOnForgeMod` as a mod, be careful when shadowing
 
 ## Licensing
 
+- ForgedFabric is Copyright 2022 LukeGrahamLandry, available under the Apache License 2.0, you can pretty much do whatever you want with it.
 - ForgedFabric uses the same package and method names as the Fabric API, Copyright (c) 2016, 2017, 2018, 2019 FabricMC under the [Apache License 2.0](https://github.com/FabricMC/fabric/blob/1.19.2/LICENSE). 
 - ForgedFabric includes ZsoltMolnarrr/TinyConfig, Copyright (c) 2022 under the MIT License.
