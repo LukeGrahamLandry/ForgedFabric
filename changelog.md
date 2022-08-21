@@ -3,7 +3,7 @@
 What parts of the Fabric API have been implemented by ForgedFabric in each version.  
 
 
-## 0.0.1-1.19
+## 0.0.1+1.19
 
 Loader
 - `ClientModInitializer`
@@ -26,4 +26,3 @@ Networking
 
 ZsoltMolnarrr/TinyConfig
 - `ConfigManager`
-

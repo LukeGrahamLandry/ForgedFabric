@@ -29,6 +29,7 @@ ForgedFabric may be added to your project as a dependency. Take care that event 
 - `ModelPredicateProviderRegistry#register` is renamed by forge
 - other multiplatform libraries used from common code need to have exactly the same method signatures for everything you use 
 - would be interesting have something that runs before forge to find jars with fabric.mod.json files and generate mod.toml files, would also need to generate a class with the mod annotation
+- if another mod does the same clever trick with having the fabric api packages, they'll conflict
 
 ## Tips 
 
@@ -36,6 +37,7 @@ ForgedFabric may be added to your project as a dependency. Take care that event 
 - architectury-loom lets you use yarn mappings on forge. if you stay with yarn when porting fabric mods you can merge upstream changes easily
 - you must manually call your ModInitializer and ClientModInitializer from your forge mod
 - forge must load `FabricOnForgeMod` as a mod, be careful when shadowing
+- if you include the library in your jar, make sure to `relocate` the `net.fabricmc` package so your mod doesn't conflict with this or others that try to do the same thing
 
 ## Licensing
 

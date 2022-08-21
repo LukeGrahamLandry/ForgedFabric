@@ -7,9 +7,9 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraftforge.event.entity.player.PlayerEvent;
-import net.minecraftforge.event.server.ServerStartedEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.server.FMLServerStartedEvent;
 
 @Mod.EventBusSubscriber(modid = FabricOnForgeMod.MOD_ID, bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ForgeEvents {
@@ -24,7 +24,7 @@ public class ForgeEvents {
     }
 
     @SubscribeEvent
-    public static void onSererStart(ServerStartedEvent event){
-        ServerLifecycleEvents.onServerStarted.forEach((action) -> action.onServerStarted(event.getServer()));
+    public static void onSererStart(FMLServerStartedEvent event){
+        event.getServer().execute(() -> ServerLifecycleEvents.onServerStarted.forEach((action) -> action.onServerStarted(event.getServer())));
     }
 }

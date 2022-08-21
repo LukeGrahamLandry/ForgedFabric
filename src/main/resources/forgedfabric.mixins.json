@@ -3,10 +3,11 @@
   "minVersion": "0.8",
   "package": "ca.lukegrahamlandry.forgedfabric.mixins",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "forgedfabric.refmap.json",
+  "refmap": "forgedfabric-refmap.json",
   "mixins": [
   ],
   "client": [
+    "ModelPredicateProviderRegistryInvoker"
   ],
   "injectors": {
     "defaultRequire": 1

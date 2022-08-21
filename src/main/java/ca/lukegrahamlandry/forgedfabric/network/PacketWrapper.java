@@ -5,7 +5,7 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.util.Identifier;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.fml.network.NetworkEvent;
 
 import java.util.function.Supplier;
 
@@ -31,6 +31,7 @@ public class PacketWrapper {
 
     // TODO: handle missing hander elegantly, dont set handled so forge prints a warning
     public static void handle(PacketWrapper msg, Supplier<NetworkEvent.Context> contextSupplier) {
+        System.out.println(msg.packetType);
         if (msg.isClientBound) ClientPlayNetworking.handle(msg);
         else ServerPlayNetworking.handle(msg, contextSupplier.get().getSender());
         contextSupplier.get().setPacketHandled(true);
