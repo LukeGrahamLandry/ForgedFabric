@@ -20,7 +20,7 @@ public class ClientPlayNetworking {
     }
 
     public static void send(Identifier id, PacketByteBuf forwardBuffer) {
-        NetworkHandler.INSTANCE.sendToServer(new PacketWrapper(false, id, forwardBuffer));
+        NetworkHandler.INSTANCE.sendToServer(new PacketWrapper(false, id, forwardBuffer.copy()));
     }
 
     public static void handle(PacketWrapper msg) {
