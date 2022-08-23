@@ -1,6 +1,6 @@
 package net.fabricmc.loader.impl;
 
-import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.fake.FabricLoader;
 import net.minecraftforge.fml.ModList;
 
 public class FabricLoaderImpl implements FabricLoader{

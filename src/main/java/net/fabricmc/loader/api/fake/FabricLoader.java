@@ -1,7 +1,6 @@
-package net.fabricmc.loader.api;
+package net.fabricmc.loader.api.fake;
 
 import net.fabricmc.loader.impl.FabricLoaderImpl;
-import net.minecraftforge.fml.ModList;
 
 public interface FabricLoader {
     static FabricLoader getInstance(){
