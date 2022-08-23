@@ -1,3 +1,7 @@
+import java.nio.charset.StandardCharsets
+import java.nio.file.Files
+import java.nio.file.Paths
+
 plugins {
     id "dev.architectury.loom" version "0.12.0-SNAPSHOT"
     id 'maven-publish'
@@ -89,5 +93,31 @@ java {
 jar {
     from("LICENSE") {
         rename { "${it}_${project.archivesBaseName}" }
+    }
+}
+
+
+tasks.register('applyLicense') {
+    doLast {
+        Files.walk(Paths.get("src/main/java/ca/lukegrahamlandry/forgedfabric"))
+                .filter(p -> p.getFileName().toString().endsWith(".java"))
+                .forEach(p -> {
+
+                    BufferedReader reader = new BufferedReader(new FileReader(p.toString()));
+                    String first = reader.readLine();
+                    reader.close();
+
+                    if (first.contains("GNU")) return;
+                    List<String> lines = Files.readAllLines(p, StandardCharsets.UTF_8);
+                    FileWriter writer = new FileWriter(p.toString());
+
+                    writer.append("// This file is part of ForgedFabric, Copyright LukeGrahamLandry, available under the terms of the GNU Lesser General Public License\n")
+                    writer.append("// https://github.com/LukeGrahamLandry/ForgedFabric/blob/1.19/LICENSE.txt\n")
+
+                    for (String line : lines){
+                        writer.append(line + "\n")
+                    }
+                    writer.close();
+                });
     }
 }
