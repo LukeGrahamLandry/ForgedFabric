@@ -7,7 +7,7 @@
   "mixins": [
   ],
   "client": [
-    "ModelPredicateProviderRegistryInvoker"
+
   ],
   "injectors": {
     "defaultRequire": 1
