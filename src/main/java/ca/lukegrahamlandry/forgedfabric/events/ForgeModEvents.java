@@ -1,8 +1,9 @@
 package ca.lukegrahamlandry.forgedfabric.events;
 
 
-import ca.lukegrahamlandry.forgedfabric.util.FFPlatformHelper;
+import ca.lukegrahamlandry.forgedfabric.FFPlatformHelper;
 import ca.lukegrahamlandry.forgedfabric.FabricOnForgeMod;
+import ca.lukegrahamlandry.forgedfabric.util.RegistryHelper;
 import net.minecraft.block.Block;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.EventPriority;
@@ -13,6 +14,6 @@ import net.minecraftforge.fml.common.Mod;
 public class ForgeModEvents {
     @SubscribeEvent(priority = EventPriority.HIGHEST)
     public static void register(RegistryEvent.Register<Block> event){
-        FFPlatformHelper.init();
+        RegistryHelper.init();
     }
 }

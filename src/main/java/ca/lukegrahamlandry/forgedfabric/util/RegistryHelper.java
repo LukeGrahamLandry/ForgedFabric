@@ -10,7 +10,7 @@ import net.minecraftforge.registries.IForgeRegistryEntry;
 import java.util.HashMap;
 import java.util.Map;
 
-public class FFPlatformHelper {
+public class RegistryHelper {
     private static Map<String, DeferredRegister> registries = new HashMap<>();
 
     public static <T> T register(Registry<? super T> registry, Identifier id, T entry){
