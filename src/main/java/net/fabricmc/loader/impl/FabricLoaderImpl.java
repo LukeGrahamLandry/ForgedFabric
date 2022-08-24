@@ -18,6 +18,9 @@ package net.fabricmc.loader.impl;
 
 import net.fabricmc.loader.api.fake.FabricLoader;
 import net.minecraftforge.fml.ModList;
+import net.minecraftforge.fml.loading.FMLPaths;
+
+import java.nio.file.Path;
 
 public class FabricLoaderImpl implements FabricLoader{
     public static final FabricLoader I = new FabricLoaderImpl();
@@ -25,5 +28,10 @@ public class FabricLoaderImpl implements FabricLoader{
     @Override
     public boolean isModLoaded(String modid) {
         return ModList.get().isLoaded(modid);
+    }
+
+    @Override
+    public Path getConfigDir() {
+        return FMLPaths.CONFIGDIR.get();
     }
 }

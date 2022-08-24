@@ -2,6 +2,7 @@ package net.tinyconfig;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import net.fabricmc.loader.api.fake.FabricLoader;
 import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -101,7 +102,7 @@ public class ConfigManager<Config> {
     }
 
     private Path getConfigDir() {
-        return FMLPaths.CONFIGDIR.get(); // FabricLoader.getInstance().getConfigDir();
+        return FabricLoader.getInstance().getConfigDir();
     }
 
     private Path getConfigFilePath() {

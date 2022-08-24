@@ -5,7 +5,9 @@ import ca.lukegrahamlandry.forgedfabric.FabricOnForgeMod;
 import net.fabricmc.fabric.api.event.lifecycle.v1.ServerLifecycleEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.minecraft.server.command.CommandManager;
 import net.minecraft.server.network.ServerPlayerEntity;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -26,5 +28,12 @@ public class ForgeEvents {
     @SubscribeEvent
     public static void onSererStart(FMLServerStartedEvent event){
         event.getServer().execute(() -> ServerLifecycleEvents.onServerStarted.forEach((action) -> action.onServerStarted(event.getServer())));
+    }
+
+    @SubscribeEvent
+    public static void registerCommands(RegisterCommandsEvent event) {
+        CommonEventHelper.commands.forEach((listener) -> {
+            listener.register(event.getDispatcher(), event.getEnvironment() == CommandManager.RegistrationEnvironment.DEDICATED);
+        });
     }
 }

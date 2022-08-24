@@ -26,8 +26,6 @@ displayName="ForgedFabric API" #mandatory
 #updateJSONURL="http://myurl.me/" #optional
 # A URL for the "homepage" for this mod, displayed in the mod UI
 displayURL="https://github.com/LukeGrahamLandry/ForgedFabric" #optional
-# A file name (in the root of the mod JAR) containing a logo for display
-#logoFile="cosmetology.png" #optional
 # A text field displayed in the mod UI
 #credits="Thanks for this example mod goes to Java" #optional
 # A text field displayed in the mod UI

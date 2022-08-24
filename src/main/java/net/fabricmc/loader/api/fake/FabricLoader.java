@@ -18,10 +18,14 @@ package net.fabricmc.loader.api.fake;
 
 import net.fabricmc.loader.impl.FabricLoaderImpl;
 
+import java.nio.file.Path;
+
 public interface FabricLoader {
     static FabricLoader getInstance(){
         return FabricLoaderImpl.I;
     }
 
     boolean isModLoaded(String modid);
+
+    Path getConfigDir();
 }
