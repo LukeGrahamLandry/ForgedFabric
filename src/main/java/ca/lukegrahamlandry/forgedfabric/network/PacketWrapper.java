@@ -31,7 +31,6 @@ public class PacketWrapper {
 
     // TODO: handle missing hander elegantly, dont set handled so forge prints a warning
     public static void handle(PacketWrapper msg, Supplier<NetworkEvent.Context> contextSupplier) {
-        System.out.println(msg.packetType);
         if (msg.isClientBound) ClientPlayNetworking.handle(msg);
         else ServerPlayNetworking.handle(msg, contextSupplier.get().getSender());
         contextSupplier.get().setPacketHandled(true);

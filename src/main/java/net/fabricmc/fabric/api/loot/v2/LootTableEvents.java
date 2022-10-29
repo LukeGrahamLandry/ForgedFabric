@@ -35,6 +35,8 @@ public final class LootTableEvents {
 
     public static class LootTableModifierEvent extends Event<LootTableEvents.Modify> {
         public void register(LootTableEvents.Modify listener){
+
+            System.out.println("WARNING: net.fabricmc.fabric.api.loot.v2 is not actually implemented by forgedfabric");
             modifyLootTables.add(listener);
         }
     }
