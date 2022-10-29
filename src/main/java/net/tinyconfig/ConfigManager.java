@@ -1,45 +1,45 @@
+/*
+    https://github.com/ZsoltMolnarrr/TinyConfig
+
+    The MIT License (MIT)
+
+    Copyright (c) 2022
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
+ */
+
 package net.tinyconfig;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import net.fabricmc.loader.api.fake.FabricLoader;
-import net.minecraftforge.fml.loading.FMLPaths;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
-/* https://github.com/ZsoltMolnarrr/TinyConfig/blob/main/src/main/java/net/tinyconfig/ConfigManager.java
- *
- * The MIT License (MIT)
- * Copyright (c) 2022
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in
- * all copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
- * THE SOFTWARE.
- */
 
 public class ConfigManager<Config> {
-    static final Logger LOGGER = LogManager.getLogger();
+    static final Logger LOGGER = LogManager.getLogger("tiny-config");
 
-    public Config currentConfig;
+    public Config value;
     public String configName;
     public String directory;
     public boolean isLoggingEnabled = false;
@@ -47,7 +47,7 @@ public class ConfigManager<Config> {
 
     public ConfigManager(String configName, Config defaultConfig) {
         this.configName = configName;
-        this.currentConfig = defaultConfig;
+        this.value = defaultConfig;
     }
 
     public void refresh() {
@@ -66,10 +66,10 @@ public class ConfigManager<Config> {
             if (Files.exists(filePath)) {
                 // Read
                 Reader reader = Files.newBufferedReader(filePath);
-                currentConfig = (Config) gson.fromJson(reader, currentConfig.getClass());
+                value = (Config) gson.fromJson(reader, value.getClass());
                 reader.close();
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             if (isLoggingEnabled) {
                 LOGGER.error("Failed loading " + configName + " config: " + e.getMessage());
             }
@@ -77,9 +77,9 @@ public class ConfigManager<Config> {
     }
 
     public void save() {
-        Config config = currentConfig;
+        Config config = value;
         Path filePath = getConfigFilePath();
-        Path configDir = getConfigDir();
+        Path configDir = PlatformHelper.getConfigDir();
 
         try {
             if (directory != null && !directory.isEmpty()) {
@@ -94,15 +94,11 @@ public class ConfigManager<Config> {
                 Gson gson = new Gson();
                 LOGGER.info(configName + " config written: " + gson.toJson(config));
             }
-        } catch(Exception e) {
+        } catch (Exception e) {
             if (isLoggingEnabled) {
                 LOGGER.error("Failed writing " + configName + " config: " + e.getMessage());
             }
         }
-    }
-
-    private Path getConfigDir() {
-        return FabricLoader.getInstance().getConfigDir();
     }
 
     private Path getConfigFilePath() {
@@ -110,7 +106,7 @@ public class ConfigManager<Config> {
         if (directory != null && !directory.isEmpty()) {
             configFilePath = directory + "/" + configFilePath;
         }
-        Path configDir = getConfigDir();
+        Path configDir = PlatformHelper.getConfigDir();
         return configDir.resolve(configFilePath);
     }
 

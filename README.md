@@ -9,5 +9,5 @@ ForgedFabric is an implementation of the Fabric API on Forge. Same idea as [Quil
 ## Licensing
 
 - ForgedFabric is Copyright 2022 LukeGrahamLandry, available under the LGPL License.
-- ForgedFabric uses the same package and method names as the Fabric API, Copyright (c) 2016, 2017, 2018, 2019 FabricMC under the [Apache License 2.0](https://github.com/FabricMC/fabric/blob/1.19.2/LICENSE). 
-- ForgedFabric includes ZsoltMolnarrr/TinyConfig, v1.0.2, Copyright (c) 2022 under the [MIT License](https://github.com/ZsoltMolnarrr/TinyConfig/blob/be53fb3091555c09bcd59508d9be9c8b04bfba16/LICENSE).
+- ForgedFabric uses the same package structure and method names as the Fabric API, Copyright (c) 2016, 2017, 2018, 2019 FabricMC under the [Apache License 2.0](https://github.com/FabricMC/fabric/blob/1.19.2/LICENSE). 
+- ForgedFabric includes ZsoltMolnarrr/TinyConfig, v2.1.0, Copyright (c) 2022 under the [MIT License](https://github.com/ZsoltMolnarrr/TinyConfig/blob/73780c6b2603a97ed2e3227874fb171cd742dad5/LICENSE).
