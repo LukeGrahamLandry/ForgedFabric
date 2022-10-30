@@ -29,10 +29,10 @@ public class PacketWrapper {
         return new PacketWrapper(packetByteBuf.readBoolean(), packetByteBuf.readIdentifier(), packetByteBuf.readBytes(packetByteBuf.readableBytes()));
     }
 
-    // TODO: handle missing hander elegantly, dont set handled so forge prints a warning
     public static void handle(PacketWrapper msg, Supplier<NetworkEvent.Context> contextSupplier) {
-        if (msg.isClientBound) ClientPlayNetworking.handle(msg);
-        else ServerPlayNetworking.handle(msg, contextSupplier.get().getSender());
-        contextSupplier.get().setPacketHandled(true);
+        boolean handled;
+        if (msg.isClientBound) handled = ClientPlayNetworking.handle(msg);
+        else handled = ServerPlayNetworking.handle(msg, contextSupplier.get().getSender());
+        contextSupplier.get().setPacketHandled(handled);
     }
 }

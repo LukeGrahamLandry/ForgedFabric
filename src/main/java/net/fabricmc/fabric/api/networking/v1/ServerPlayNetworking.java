@@ -44,8 +44,10 @@ public class ServerPlayNetworking {
         NetworkHandler.INSTANCE.send(PacketDistributor.PLAYER.with(() -> (ServerPlayerEntity) serverPlayer), new PacketWrapper(true, id, forwardBuffer.copy()));
     }
 
-    public static void handle(PacketWrapper msg, ServerPlayerEntity sender) {
+    public static boolean handle(PacketWrapper msg, ServerPlayerEntity sender) {
+        if (!HANDLERS.containsKey(msg.packetType)) return false;
         HANDLERS.get(msg.packetType).receive(sender.getServer(), sender, sender.networkHandler, new PacketByteBuf(msg.data), null);
+        return true;
     }
 
     public interface PlayChannelHandler {

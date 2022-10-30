@@ -39,8 +39,10 @@ public class ClientPlayNetworking {
         NetworkHandler.INSTANCE.sendToServer(new PacketWrapper(false, id, forwardBuffer.copy()));
     }
 
-    public static void handle(PacketWrapper msg) {
+    public static boolean handle(PacketWrapper msg) {
+        if (!HANDLERS.containsKey(msg.packetType)) return false;
         HANDLERS.get(msg.packetType).receive(MinecraftClient.getInstance(), MinecraftClient.getInstance().getNetworkHandler(), new PacketByteBuf(msg.data), null);
+        return true;
     }
 
     public interface PlayChannelHandler {

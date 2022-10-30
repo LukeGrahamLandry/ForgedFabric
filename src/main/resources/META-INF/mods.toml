@@ -11,7 +11,7 @@ loaderVersion="[36,)" #mandatory This is typically bumped every Minecraft versio
 # Review your options at https://choosealicense.com/. All rights reserved is the default copyright stance, and is thus the default here.
 license="LGPL"
 # A URL to refer people to when problems occur with this mod
-#issueTrackerURL="http://my.issue.tracker/" #optional
+issueTrackerURL="https://github.com/LukeGrahamLandry/ForgedFabric/issues" #optional
 # A list of mods - how many allowed here is determined by the individual mod loader
 [[mods]] #mandatory
 # The modid of the mod
@@ -27,12 +27,12 @@ displayName="ForgedFabric API" #mandatory
 # A URL for the "homepage" for this mod, displayed in the mod UI
 displayURL="https://github.com/LukeGrahamLandry/ForgedFabric" #optional
 # A text field displayed in the mod UI
-#credits="Thanks for this example mod goes to Java" #optional
+credits="Bundled Libraries: ZsoltMolnarrr/TinyConfig" #optional
 # A text field displayed in the mod UI
 authors="LukeGrahamLandry" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-ForgedFabric is a reimplementation of the Fabric API on Forge. Same idea as the quilted-fabric-api.
+ForgedFabric is a partial reimplementation of the Fabric API on Forge. Same idea as the quilted-fabric-api.
 '''
 # A dependency - use the . to indicate dependency for a specific modid. Dependencies are optional.
 [[dependencies.forgedfabric]] #optional
