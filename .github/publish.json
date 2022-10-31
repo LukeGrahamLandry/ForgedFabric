@@ -1,0 +1,14 @@
+{
+  "loader": "forge",
+  "mc_versions": ["1.16.5"],
+  "changelogUrl": "https://moddingtutorials.org/mods/ForgedFabric/Changelog",
+  "releaseType": "beta",
+  "curseforge": {
+    "id": "662687"
+  },
+  "github": {
+    "owner": "LukeGrahamLandry",
+    "repo": "ForgedFabric",
+    "branch": "1.16"
+  }
+}

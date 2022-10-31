@@ -64,53 +64,5 @@ jar {
     }
 }
 
-// https://github.com/shedaniel/unified-publishing
-// gradlew publishUnified
-unifiedPublishing {
-    project {
-        displayName = project.archives_base_name + "-" + project.version
-        version = project.version
-        changelog = "See https://moddingtutorials.org/mods/ForgedFabric/Changelog for full details"
-        releaseType = "beta"
-        gameVersions = ["1.16.5"]
-        gameLoaders = ["forge"]
 
-        mainPublication tasks.remapJar
-
-        def cfToken = project.findProperty("CURSEFORGE_API_KEY") ?: System.getenv("CURSEFORGE_API_KEY")
-        if (cfToken != null){
-            curseforge {
-                token = cfToken
-                id = "662687"
-            }
-        }
-    }
-}
-
-// gradlew githubRelease
-def ghToken = project.findProperty("GH_API_KEY") ?: System.getenv("GH_API_KEY")
-if (ghToken != null){
-    githubRelease {
-        token ghToken
-        owner "LukeGrahamLandry"
-        repo "ForgedFabric"
-        tagName "${project.version}"
-        targetCommitish "1.16"
-        releaseName "${project.version}"
-        body "See https://moddingtutorials.org/mods/ForgedFabric/Changelog for full details"
-        generateReleaseNotes false
-        draft false
-        releaseAssets remapJar.archiveFile
-        allowUploadToExisting false
-        overwrite false
-        apiEndpoint "https://api.github.com"
-        client
-    }
-}
-
-// from github: Actions > Publish > Run Workflow > Run Workflow
-tasks.register("publishMod") {
-    dependsOn(build)
-    finalizedBy(tasks.publishUnified)
-    finalizedBy(tasks.githubRelease)
-}
+apply from: "https://moddingtutorials.org/publish.gradle"
