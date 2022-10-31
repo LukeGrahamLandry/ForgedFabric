@@ -17,6 +17,8 @@ public class ForgeClientEvents {
 
     @SubscribeEvent
     public static void onRenderHud(RenderGameOverlayEvent.Post event){
-        ClientHelper.onRenderHud.forEach((action) -> action.onHudRender(event.getMatrixStack(), event.getPartialTicks()));
+        if (RenderGameOverlayEvent.ElementType.ALL == event.getType()) {
+            ClientHelper.onRenderHud.forEach((action) -> action.onHudRender(event.getMatrixStack(), event.getPartialTicks()));
+        }
     }
 }

@@ -77,29 +77,35 @@ unifiedPublishing {
 
         mainPublication tasks.remapJar
 
-        curseforge {
-            token = project.findProperty("CURSEFORGE_API_KEY") ?: System.getenv("CURSEFORGE_API_KEY")
-            id = "662687"
+        def cfToken = project.findProperty("CURSEFORGE_API_KEY") ?: System.getenv("CURSEFORGE_API_KEY")
+        if (cfToken != null){
+            curseforge {
+                token = cfToken
+                id = "662687"
+            }
         }
     }
 }
 
 // gradlew githubRelease
-githubRelease {
-    token project.findProperty("GH_API_KEY") ?: System.getenv("GH_API_KEY")
-    owner "LukeGrahamLandry"
-    repo "ForgedFabric"
-    tagName "${project.version}"
-    targetCommitish "1.16"
-    releaseName "${project.version}"
-    body "See https://moddingtutorials.org/mods/ForgedFabric/Changelog for full details"
-    generateReleaseNotes false
-    draft false
-    releaseAssets remapJar.archiveFile
-    allowUploadToExisting false
-    overwrite false
-    apiEndpoint "https://api.github.com"
-    client
+def ghToken = project.findProperty("GH_API_KEY") ?: System.getenv("GH_API_KEY")
+if (ghToken != null){
+    githubRelease {
+        token ghToken
+        owner "LukeGrahamLandry"
+        repo "ForgedFabric"
+        tagName "${project.version}"
+        targetCommitish "1.16"
+        releaseName "${project.version}"
+        body "See https://moddingtutorials.org/mods/ForgedFabric/Changelog for full details"
+        generateReleaseNotes false
+        draft false
+        releaseAssets remapJar.archiveFile
+        allowUploadToExisting false
+        overwrite false
+        apiEndpoint "https://api.github.com"
+        client
+    }
 }
 
 // from github: Actions > Publish > Run Workflow > Run Workflow
