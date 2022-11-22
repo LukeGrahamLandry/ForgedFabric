@@ -1,4 +1,4 @@
-package ca.lukegrahamlandry.forgedfabric.depend;
+package ca.lukegrahamlandry.forgedfabric.util.depend;
 
 import net.minecraftforge.fml.loading.FMLPaths;
 import net.minecraftforge.fml.loading.StringUtils;
@@ -31,7 +31,7 @@ public class BundledDependencyLocator extends AbstractJarFileLocator {
         this.modDir = FMLPaths.MODSDIR.get();
         this.bundleDirName = "ff_bundle";
         this.bundleOutputDirectory = new File(this.modDir.toFile(), this.bundleDirName).toPath();
-        this.selfClassId = "ca.lukegrahamlandry.forgedfabric.depend.BundledDependencyLocator";
+        this.selfClassId = "ca.lukegrahamlandry.forgedfabric.util.depend.BundledDependencyLocator";
     }
 
     public List<IModFile> scanMods() {
@@ -50,7 +50,7 @@ public class BundledDependencyLocator extends AbstractJarFileLocator {
             // which includes anything with the IModLocator service file
             // so I have to add forgedfabric to the results manually
             Optional<IModFile> ff = forgedfabric();
-            if (!ff.isPresent()) LOGGER.error("Could not find jar containing the locator service" + this.selfClassId);
+            if (!ff.isPresent()) LOGGER.error("Could not find jar containing the locator service " + this.selfClassId);
             else results.add(ff.get().getFilePath());
 
             return jarPathsToModFiles(results.stream());
